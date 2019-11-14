@@ -18,9 +18,8 @@ from google.cloud import storage
 
 load_dotenv()
 
-
 def format_connection_string(secrets):
-    return f"DRIVER=ODBC Driver 17 for SQL Server;SERVER={secrets['server']}DATABASE=SGID10;UID={secrets['username']};PWD={secrets['password']}"
+    return f"DRIVER=ODBC Driver 17 for SQL Server;SERVER={secrets['server']};DATABASE=SGID10;UID={secrets['username']};PWD={secrets['password']}"
 
 
 def get_output_file():

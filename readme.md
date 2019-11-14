@@ -19,7 +19,7 @@
     ```
 
 - create service account with bucket write permissions
-  - place it in `sde-usage-getter/src/usage/service_account.json`
+  - place it in `sde-usage-getter/src/service_account.json`
 
 ## Usage
 
