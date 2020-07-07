@@ -7,7 +7,7 @@ A MSSQL trigger writes a record to a table when a lock is created. There is a go
 
 ## Installation
 
-- conda create --clone arcgispro-py3 --name sde-usage-getter
+- conda create --name sde-usage-getter python=3.7
 - activate sde-usage-getter
 - conda install docopt pyodbc
 - pip install -r requirements.txt
