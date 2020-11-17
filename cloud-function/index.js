@@ -1,28 +1,26 @@
 /**
- * This function should be registered to bucket events on deploy
- * See: https://cloud.google.com/functions/docs/calling/storage
- * deploy with: gcloud functions deploy sgidStatsToBigQuery --runtime nodejs12 --trigger-resource sgid_stats --trigger-event google.storage.object.finalize
- * @param {object} event The Cloud Functions event.
- * @param {function} callback The callback function.
+ *  Generic background Cloud Function to be triggered by Cloud Storage.
+ * https://cloud.google.com/functions/docs/calling/storage
+ * @param {object} file The Cloud Storage file metadata.
+ * @param {object} context The event metadata.
  */
-exports.sgidStatsToBigQuery = (event, callback) => {
-  const file = event.data;
+exports.sgidStatsToBigQuery = (file, context) => {
   const bqDataset = 'sgid_stats';
   const tableName = 'locks';
   const project = 'agrc-204220';
 
 
-  console.log(`  Event ${event.eventId}`);
-  console.log(`  Event Type: ${event.eventType}`);
+  console.log(`  Event ${context.eventId}`);
+  console.log(`  Event Type: ${context.eventType}`);
   console.log(`  Bucket: ${file.bucket}`);
   console.log(`  File: ${file.name}`);
   console.log(`  Metageneration: ${file.metageneration}`);
   console.log(`  Created: ${file.timeCreated}`);
   console.log(`  Updated: ${file.updated}`);
-  const Storage = require('@google-cloud/storage');
-  const BigQuery = require('@google-cloud/bigquery');
-  const bigquery = new BigQuery();
-  const dataset = bigquery.dataset(bqDataset); // Dataset must already exist in BigQuery
+  const {Storage} = require('@google-cloud/storage');
+  const {BigQuery} = require('@google-cloud/bigquery');
+  const bqClient = new BigQuery();
+  const dataset = bqClient.dataset(bqDataset); // Dataset must already exist in BigQuery
   const table = dataset.table(tableName);
 
   // see all load job options: https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration.load
