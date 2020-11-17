@@ -34,3 +34,7 @@ A MSSQL trigger writes a record to a table when a lock is created. There is a go
     python -m usage get
     python -m usage truncate
 ```
+
+## Cloud function deployment
+
+`gcloud functions deploy sgidStatsToBigQuery --runtime nodejs12 --trigger-resource sgid_stats --trigger-event google.storage.object.finalize --source ./cloud-function`

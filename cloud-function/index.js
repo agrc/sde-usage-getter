@@ -1,7 +1,7 @@
 /**
  * This function should be registered to bucket events on deploy
  * See: https://cloud.google.com/functions/docs/calling/storage
- * deploy with: gcloud functions deploy sgidStatsToBigQuery --runtime nodejs6 --trigger-resource sgid_stats --trigger-event google.storage.object.finalize
+ * deploy with: gcloud functions deploy sgidStatsToBigQuery --runtime nodejs12 --trigger-resource sgid_stats --trigger-event google.storage.object.finalize
  * @param {object} event The Cloud Functions event.
  * @param {function} callback The callback function.
  */
